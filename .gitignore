@@ -1,0 +1,14 @@
+# Ambiente virtual e cache do Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Modelos pesados do MediaPipe (baixados via curl conforme o README)
+*.task
+
+# Dados gerados em tempo de execução
+ranking.json
+metricas_execucao.json
+fotos_podio/
+relatorio_avaliacao.png
