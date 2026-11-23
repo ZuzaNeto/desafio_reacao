@@ -1,5 +1,6 @@
 import os
 import time
+import urllib.request
 import cv2
 import numpy as np
 import mediapipe as mp
@@ -9,9 +10,18 @@ from mediapipe.tasks.python import vision
 from movimentos import calcular_angulo
 
 MODELOS_DISPONIVEIS = {
-    "LITE": "pose_landmarker_lite.task",
-    "FULL": "pose_landmarker_full.task",
-    "HEAVY": "pose_landmarker_heavy.task",
+    "LITE": (
+        "pose_landmarker_lite.task",
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task",
+    ),
+    "FULL": (
+        "pose_landmarker_full.task",
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+    ),
+    "HEAVY": (
+        "pose_landmarker_heavy.task",
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task",
+    ),
 }
 
 CONEXOES_POSE = [
@@ -31,14 +41,19 @@ class DetectorPose:
         self.trocar_modelo(modelo_inicial)
 
     def trocar_modelo(self, nome_modelo):
-        """Alterna dinamicamente entre LITE, FULL e HEAVY."""
+        """Alterna dinamicamente entre LITE, FULL e HEAVY, baixando se necessário."""
         nome_modelo = nome_modelo.upper()
         if nome_modelo not in MODELOS_DISPONIVEIS:
             return False, f"Modelo '{nome_modelo}' inválido."
 
-        caminho = MODELOS_DISPONIVEIS[nome_modelo]
+        caminho, url = MODELOS_DISPONIVEIS[nome_modelo]
         if not os.path.exists(caminho):
-            return False, f"Arquivo '{caminho}' não encontrado."
+            try:
+                print(f"Baixando modelo {nome_modelo} ({caminho})...")
+                urllib.request.urlretrieve(url, caminho)
+                print(f"Download do modelo {nome_modelo} concluído.")
+            except Exception as e:
+                return False, f"Erro ao baixar {nome_modelo}: {e}"
 
         if self.modelo_atual == nome_modelo and self.landmarker is not None:
             return True, f"Modelo {nome_modelo} já está ativo."
