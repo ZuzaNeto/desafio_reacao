@@ -28,7 +28,7 @@ Um jogo interativo em tempo real desenvolvido como projeto prático de **Process
 
 O jogo sorteia comandos visuais que exigem posturas específicas do usuário (ex.: *Levantar Braço Direito*, *Posição em T*, *Mãos Cruzadas*, *Super-Herói*, etc.). O sistema mede o tempo que o jogador leva para assumir a pose corretamente a partir da posição neutra.
 
-![Demonstração do Sistema](https://via.placeholder.com/800x450.png?text=Desafio+de+Reacao+Corporal+-+Interface+HUD)
+![Demonstração do Sistema](docs/hud.png)
 
 ---
 
@@ -146,9 +146,40 @@ O sistema monitora continuadamente o desempenho do pipeline de Visão Computacio
 
 ---
 
+## 👥 Créditos
+
+**Alunos:**
+
+| Nome completo | Matrícula |
+|---|---|
+| José Nunes de Sousa Neto | 20250071231 |
+| Manoel Lucas Pacheco Júnior | 20250071269 |
+| Maria Laura Rangel Urbano Cronemberger | 20250071287 |
+
+
+**Disciplina:** EECP0024 - Processamento de Imagens
+
+**Professor:** Prof. Dr. Haroldo Gomes Barroso Filho
+
+**Instituição:** UFMA — Universidade Federal do Maranhão
+
+**Semestre:** 2026.2
+
+---
+
 ## 📄 Licença
 
 Este projeto está licenciado sob a Licença MIT — consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
 
 ---
 *Desenvolvido como projeto prático para a disciplina de Processamento Digital de Imagens (PDI).*
+
+---
+
+<div align="center">
+
+**Este repositório possui fins acadêmicos.**
+
+</div>
+
+---
